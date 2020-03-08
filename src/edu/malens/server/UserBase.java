@@ -34,6 +34,8 @@ public class UserBase {
         this.usersUDPByIds.put(id, udpUser);
         Thread t = new Thread(user);
         t.start();
+        Message welcome = new Message(user.getUserId(), "Welcome " + user.getName() + " to the chat!", "server");
+        this.broadcast(welcome);
     }
 
     public int getNextId(Message msg) {

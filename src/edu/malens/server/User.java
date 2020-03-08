@@ -46,6 +46,9 @@ public class User implements Runnable {
             Message msg = new Message(id, "adaas", name);
             sendMessage(msg, true);
             System.out.println("message sent");
+
+            Message userWelcome = new Message(0, "Welcome to the chat, " + msg.fromName + "!", "server");
+            this.sendMessage(userWelcome, true);
             DataInputStream inputStream = new DataInputStream(userSocket.getInputStream());
             while (true) {
                 String msgString = inputStream.readUTF().trim();
@@ -57,5 +60,13 @@ public class User implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getUserId(){
+        return this.id;
+    }
+
+    public String getName(){
+        return this.name;
     }
 }
